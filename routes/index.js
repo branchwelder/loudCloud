@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var path = require('path');
 
-/* GET home page. */
+/* GET pages. */
 router.get('/', function(req, res, next) {
-  res.send('hellllooooooooo');
+  res.sendFile('index.html', { root: path.join(__dirname, '../views') });
 });
 
 router.get('/config', function(req, res, next) {
-  res.render('hellooooo');
+  res.sendFile('config.html', { root: path.join(__dirname, '../views') });
 });
 
 router.post('/api/create', function(req, res, next) {

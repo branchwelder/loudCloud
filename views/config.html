@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "loudCloud">
+<head>
+  <!-- Basic Page Needs-->
+  <meta charset="utf-8">
+  <title>loudCloud</title>
+  <meta name="description" content="music for the weather">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT -->
+  <link href="" rel="stylesheet" type="text/css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" type = "text/css" href="">
+
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="">
+
+<!-- Javascripting -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+</head>
+
+<body>
+
+<form>
+<!-- weather types -->
+Thunderstorm
+Drizzle
+Rain
+Snow
+Fog
+Clear
+Overcast
+Windy
+Sunny
+<!-- for each weather type -->
+  <div class = "feelSelectors"
+  <input type="radio" name="rainfeel" value="cheerful" checked> Cheerful
+  <input type="radio" name="rainfeel" value="calm"> Calm
+  <input type="radio" name="rainfeel" value="sad"> Sad
+  <input type="radio" name="rainfeel" value="grumpy"> Grumpy<br>
+  </div>
+  Where's your weather? <input type="text" name="location" placeholder="zipcode, please"><br>
+  <input type = "submit" value = "submit">
+</form>
+
+</body>
