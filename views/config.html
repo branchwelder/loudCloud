@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = "configLoudCloud">
+<html lang="en" ng-app = "app">
 <head>
   <!-- Basic Page Needs-->
   <meta charset="utf-8">
@@ -39,6 +39,10 @@ Clear
 Overcast
 Windy
 Sunny
+
+<div class="weatherTypes" ng-repeat="weatherType in weatherTypes">
+{{weatherType.type}}
+</div>
 <!-- for each weather type -->
   <div class = "feelSelectors"
   <input type="radio" name="rainfeel" value="cheerful" checked> Cheerful

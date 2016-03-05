@@ -1,5 +1,14 @@
-var config = angular.module("configLoudCloud", ['ngRoute']);
+var app = angular.module('app', ['ngRoute']);
 
-function mainController($scope, $http) {
-	$scope.weatherTypes = ["Thunderstorm", "Drizzle","Rain","Snow","Fog","Clear","Overcast","Windy","Sunny"];
-};
+app.controller('config', function($scope, $http){
+	$scope.weatherTypes = [
+	{type: "Thunderstorm"},
+	{type: "Drizzle"},
+	{type: "Rain"},
+	{type: "Snow"},
+	{type: "Fog"},
+	{type: "Clear"}, 
+	{type: "Overcast"},
+	{type: "Windy"},
+	{type: "Sunny"}];
+})
