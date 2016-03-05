@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/config', function(req, res, next) {
-  res.send('hellooooo');
+  res.render('hellooooo');
 });
 
 router.post('/api/create', function(req, res, next) {
