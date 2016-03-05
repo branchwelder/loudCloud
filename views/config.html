@@ -27,21 +27,22 @@
 </head>
 
 <body ng-controller="config">
+  <h4> Tell us how you feel about these weathers: </h4>
 
   <form>
     <!-- weather types -->
     <div class="weatherTypes" ng-repeat="weatherType in weatherTypes">
-      {{weatherType.type}}<br>
+      <div id = {{weatherType.type}}>
+        {{weatherType.type}}<br>      
+        <input type="radio" value="cheerful" name = {{weatherType.type}}> Cheerful
+        <input type="radio" value="calm" name = {{weatherType.type}}> Calm
+        <input type="radio" value="sad" name = {{weatherType.type}}> Sad
+        <input type="radio" value="grumpy" name = {{weatherType.type}}> Grumpy<br>
+      </div>
     </div>
     <!-- for each weather type -->
-    <div class = "feelSelectors"
-      <input type="radio" name="rainfeel" value="cheerful" checked> Cheerful
-      <input type="radio" name="rainfeel" value="calm"> Calm
-      <input type="radio" name="rainfeel" value="sad"> Sad
-      <input type="radio" name="rainfeel" value="grumpy"> Grumpy<br>
-    </div>
     Where's your weather? <input type="text" name="location" placeholder="zipcode, please"><br>
-  <input type = "submit" value = "submit">
-</form>
+    <input type = "submit" value = "submit">
+  </form>
 <script type="text/javascript" src="/javascripts/configController.js"></script>
 </body>
