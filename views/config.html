@@ -26,32 +26,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
 </head>
 
-<body>
+<body ng-controller="config">
 
-<form>
-<!-- weather types -->
-Thunderstorm
-Drizzle
-Rain
-Snow
-Fog
-Clear
-Overcast
-Windy
-Sunny
-
-<div class="weatherTypes" ng-repeat="weatherType in weatherTypes">
-{{weatherType.type}}
-</div>
-<!-- for each weather type -->
-  <div class = "feelSelectors"
-  <input type="radio" name="rainfeel" value="cheerful" checked> Cheerful
-  <input type="radio" name="rainfeel" value="calm"> Calm
-  <input type="radio" name="rainfeel" value="sad"> Sad
-  <input type="radio" name="rainfeel" value="grumpy"> Grumpy<br>
-  </div>
-  Where's your weather? <input type="text" name="location" placeholder="zipcode, please"><br>
+  <form>
+    <!-- weather types -->
+    <div class="weatherTypes" ng-repeat="weatherType in weatherTypes">
+      {{weatherType.type}}<br>
+    </div>
+    <!-- for each weather type -->
+    <div class = "feelSelectors"
+      <input type="radio" name="rainfeel" value="cheerful" checked> Cheerful
+      <input type="radio" name="rainfeel" value="calm"> Calm
+      <input type="radio" name="rainfeel" value="sad"> Sad
+      <input type="radio" name="rainfeel" value="grumpy"> Grumpy<br>
+    </div>
+    Where's your weather? <input type="text" name="location" placeholder="zipcode, please"><br>
   <input type = "submit" value = "submit">
 </form>
-
+<script type="text/javascript" src="/javascripts/configController.js"></script>
 </body>
