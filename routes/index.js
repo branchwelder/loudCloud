@@ -12,6 +12,34 @@ router.get('/config', function(req, res, next) {
   res.sendFile('config.html', { root: path.join(__dirname, '../views') });
 });
 
+router.get('/login', function(req, res){
+  res.render('login.html', { user: req.user });
+});
+
+router.get('/auth/spotify',
+  passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}),
+  function(req, res){
+// The request will be redirected to spotify for authentication, so this
+// function will not be called.
+});
+
+// GET /auth/spotify/callback
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request. If authentication fails, the user will be redirected back to the
+//   login page. Otherwise, the primary route function function will be called,
+//   which, in this example, will redirect the user to the home page.
+router.get('/callback',
+  passport.authenticate('spotify', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+
 router.post('/api/create', function(req, res, next) {
   //var name = req.body.name;
   var name = 'sadfjjsdfha';

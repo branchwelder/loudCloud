@@ -10,6 +10,7 @@ var passport = require('passport');
 var config = require(./'auth.js');
 var SpotifyStrategy = require('passport/index').Strategy;
 var consolidate = require('consolidate');
+var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -49,7 +50,6 @@ app.set('views', path.join(__dirname, 'views'));
 var mongoURI = 'mongodb://hannah:doggy@ds023398.mlab.com:23398/loudcloud';
 mongoose.connect(mongoURI);
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -97,3 +97,8 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
