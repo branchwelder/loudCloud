@@ -29,11 +29,11 @@
 <body ng-controller="config">
   <h4> Tell us how you feel about these weathers: </h4>
 
-  <form>
+  <form ng-submit="submit()" id="config" role="form">
     <!-- weather types -->
     <div class="weatherTypes" ng-repeat="weatherType in weatherTypes">
       <div id = {{weatherType.type}}>
-        {{weatherType.type}}<br>      
+        {{weatherType.type}}<br>
         <input type="radio" value="cheerful" name = {{weatherType.type}}> Cheerful
         <input type="radio" value="calm" name = {{weatherType.type}}> Calm
         <input type="radio" value="sad" name = {{weatherType.type}}> Sad

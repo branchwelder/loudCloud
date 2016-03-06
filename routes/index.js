@@ -13,17 +13,18 @@ router.get('/config', function(req, res, next) {
 });
 
 router.post('/api/create', function(req, res, next) {
-  var name = req.body.name;
+  //var name = req.body.name;
+  var name = 'sadfjjsdfha';
   var location = req.body.location;
   var preferences = req.body.preferences;
 
   User.count({name: name}, function (err, count){
     if(count > 0)
-      res.status(403).send('A topic with that title already exists');
+      res.status(403).send('A user with that name already exists');
     else {
-      User.create({ name: name, location:location }, function (err, topic) {
+      User.create({ name: name, location:location, preferences:preferences }, function (err, topic) {
         if (err) return res.status(500).
-          send('An error occurred when creating the new topic.');
+          send('An error occurred when creating the new user.');
         User.find(function (err, users) {res.json(users)});
       });
     }
