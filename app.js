@@ -46,7 +46,7 @@ passport.use(new SpotifyStrategy({
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
 var mongoURI = 'mongodb://hannah:doggy@ds023398.mlab.com:23398/loudcloud';

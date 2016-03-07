@@ -14,7 +14,8 @@ router.get('/config', function(req, res, next) {
 });
 
 router.get('/login', function(req, res){
-  res.render('login.html', { user: req.user });
+  //res.render('login.html', { user: req.user });
+  res.sendFile('login.html', { root: path.join(__dirname, '../views') });
 });
 
 router.get('/auth/spotify',
