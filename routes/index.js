@@ -13,10 +13,32 @@ router.get('/config', function(req, res, next) {
   res.sendFile('config.html', { root: path.join(__dirname, '../views') });
 });
 
-router.get('/login', function(req, res){
+router.get('/loginPage', function(req, res){
   //res.render('login.html', { user: req.user });
   res.sendFile('login.html', { root: path.join(__dirname, '../views') });
 });
+
+router.post('/logIn', function(req, res, next){
+  User.find({username: req.body.username},function (error, user){
+    if (error){
+      console.log(error);
+    } else{
+      if(user.length > 0){
+        req.session.userID = user[0]._id;
+        res.send("done")
+      } else{
+        var newUser = new User({
+          username: req.body.username
+        });
+        newUser.save(function(err,data){
+          if (err) {res.status(500).send('Error when saving new user to db')}
+          req.session.userID = data._id
+          res.send("done")
+        });
+      }
+    }
+  });
+})
 
 router.get('/auth/spotify',
   passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}),

@@ -16,15 +16,32 @@
   </head>
 
 <body>
- <div class = "container-fluid">
+<div class = "container-fluid">
+    <div id = "login">
+        <h2>Login:</h2>
+        <h4>Enter your username:</h4>
+        <form id = "loginForm" action = "logIn" method = "POST">
+          <input type="text" name='username'/><br/>
+          <input type="submit" value="Submit">
+        </form>
+        <div id="result">
+        </div>
+    </div>
+</div>
+
+
+
+<!--
+For Spotify Authentication
+<div class = "container-fluid">
     <div id="login">
      <h1>First, log in with spotify</h1>
      <a href="/auth/spotify">Log in</a>
     </div>
     <div id="loggedin">
     </div>
- </div>
-
+</div>
+ -->
 <!--  <script id="loggedin-template" type="text/x-handlebars-template">
     <h1>Logged in as {{display_name}}</h1>
     <img id="avatar" width="200" src="{{images.0.url}}" />
