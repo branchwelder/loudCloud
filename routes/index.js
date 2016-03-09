@@ -26,6 +26,12 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
+router.get('/api/getUserData', function(req,res){
+  User.findByID(session.userID, function(err, user){
+    res.json(user)
+  });
+});
+
 /* POST pages. */
 router.post('/api/login', function(req, res, next){
   User.find({username: req.body.username},function (error, user){
@@ -54,10 +60,11 @@ router.post('/api/update', function(req, res, next) {
   var zipcode = req.body.zipcode;
   var preferences = req.body.preferences;
   var id = req.session.userID;
+  req.session.zipcode = req.body.zipcode;
 
   User.findByIdAndUpdate(id, {$set: {zipcode: zipcode, preferences: preferences }}, {upsert:false},function (err, user) {
     if (err) return res.status(500).
-      send('An error occurred when updating the topic.');
+      send('An error occurred when updating the topic.')
     User.find(function (err, users) {res.json(users)});
   })
 });
