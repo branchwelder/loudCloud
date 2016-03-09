@@ -14,7 +14,7 @@ app.controller('config', function($scope, $http){
 	{type: "Sunny"}];
 
 	var onSuccess = function(data) {
-		console.log('worked');
+		window.location.href = "/";
 	};
 
 	$scope.submit = function() {
@@ -26,7 +26,9 @@ app.controller('config', function($scope, $http){
 			preferences.push({ weather : String($('input[name='+weather+']:checked', '#config').val()) })
 		});
 
-		$http.post("api/create", {
+		console.log("post");
+
+		$http.post("/api/update", {
 			location: location,
 			preferences: preferences
 		}).then(onSuccess);
