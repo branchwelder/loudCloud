@@ -7,7 +7,7 @@ var onErrorLogin = function(data,status){
 };
 
 $("#loginForm").submit(function(event){
-	event,preventDefault();
+	event.preventDefault();
 
 	var username = $("#loginForm").find("[name='username']").val()
 
