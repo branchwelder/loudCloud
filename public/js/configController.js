@@ -18,7 +18,7 @@ app.controller('config', function($scope, $http){
 	};
 
 	$scope.submit = function() {
-		var location = $("#config").find("[name='location']").val();
+		var zipcode = $("#config").find("[name='zipcode']").val();
 		var preferences = [];
 
 		$scope.weatherTypes.forEach(function(arrayItem) {
@@ -29,7 +29,7 @@ app.controller('config', function($scope, $http){
 		console.log("post");
 
 		$http.post("/api/update", {
-			location: location,
+			zipcode: zipcode,
 			preferences: preferences
 		}).then(onSuccess);
 	};

@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 // Create a Schema
 var User = mongoose.Schema({
     username: String,
-    location: String,
+    zipcode: String,
     preferences: Object
 });
 

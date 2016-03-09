@@ -51,11 +51,11 @@ router.post('/api/login', function(req, res, next){
 
 router.post('/api/update', function(req, res, next) {
   console.log("halllooo");
-  var location = req.body.location;
+  var zipcode = req.body.zipcode;
   var preferences = req.body.preferences;
   var id = req.session.userID;
 
-  User.findByIdAndUpdate(id, {$set: {location: location, preferences: preferences }}, {upsert:false},function (err, user) {
+  User.findByIdAndUpdate(id, {$set: {zipcode: zipcode, preferences: preferences }}, {upsert:false},function (err, user) {
     if (err) return res.status(500).
       send('An error occurred when updating the topic.');
     User.find(function (err, users) {res.json(users)});
