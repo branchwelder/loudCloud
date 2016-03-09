@@ -6,19 +6,28 @@ var path = require('path');
 
 /* GET pages. */
 router.get('/', function(req, res, next) {
-  res.sendFile('index.html', { root: path.join(__dirname, '../views') });
+  if (req.session.userID != null) {
+      res.sendFile('index.html', { root: path.join(__dirname, '../views') });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 router.get('/config', function(req, res, next) {
   res.sendFile('config.html', { root: path.join(__dirname, '../views') });
 });
 
-router.get('/loginPage', function(req, res){
-  //res.render('login.html', { user: req.user });
+router.get('/login', function(req, res){
   res.sendFile('login.html', { root: path.join(__dirname, '../views') });
 });
 
-router.post('/logIn', function(req, res, next){
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+/* POST pages. */
+router.post('/api/login', function(req, res, next){
   User.find({username: req.body.username},function (error, user){
     if (error){
       console.log(error);
@@ -39,28 +48,6 @@ router.post('/logIn', function(req, res, next){
     }
   });
 })
-
-router.get('/auth/spotify',
-  passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}),
-  function(req, res){
-});
-
-// GET /auth/spotify/callback
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   login page. Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the home page.
-router.get('/callback',
-  passport.authenticate('spotify', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
-
-router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
 
 router.post('/api/create', function(req, res, next) {
   //var name = req.body.name;
