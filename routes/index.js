@@ -27,14 +27,15 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/api/getUserData', function(req,res){
-  User.findByID(session.userID, function(err, user){
+  User.find({ _id : req.session.userID }, function(err, user){
+    console.log(user);
     res.json(user)
   });
 });
 
 /* POST pages. */
 router.post('/api/login', function(req, res, next){
-  User.find({username: req.body.username},function (error, user){
+  User.findOne({username: req.body.username},function (error, user){
     if (error){
       console.log(error);
     } else{

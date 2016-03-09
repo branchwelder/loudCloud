@@ -11,6 +11,9 @@
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 <!-- Add jQuery library -->
 <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<!-- load angular -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
 <!-- Add fancyBox main JS and CSS files -->
 <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
@@ -31,7 +34,7 @@
     });
         </script>
 </head>
-<body>
+<body ng-controller="index">
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#profile"></a>
@@ -49,7 +52,7 @@
 <script>
             $('#myModal').modal('hidden')
 </script>
-<script src = "/js/indexController.js"></script>
+<script type="text/javascript" src="/js/indexController.js"></script>
 
 </body>
 </html>
