@@ -12,7 +12,8 @@ app.controller('index', function($scope, $http){
 	$http.get('/api/queryAPI')
 	.success(function(data){
 		console.log("successful api get");
-		$scope.weather = data;
+		$scope.weather = data.weather;
+		$scope.playlists = data.playlists;
 	})
 
 });
