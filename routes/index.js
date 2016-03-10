@@ -58,6 +58,7 @@ router.get('/api/queryAPI', function(req, res){
         .then(function(data) {
           console.log('Found playlists are', data.body);
           playlist = data.body;
+          // send playlist and weather data
           res.json({ weather : weather, playlist : playlist.playlists.items[0], playlists : playlist.playlists });
         }, function(error) {
           console.log('Something went wrong while finding a playlist! ', error);
