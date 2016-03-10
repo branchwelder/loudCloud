@@ -13,7 +13,8 @@ app.controller('index', function($scope, $http){
 	.success(function(data){
 		console.log("successful api get");
 		$scope.weather = data.weather;
-		$scope.playlists = data.playlists;
+		console.log(data.playlist);
+		$scope.playlists = data.playlist;
 	})
 
 });

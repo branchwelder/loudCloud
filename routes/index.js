@@ -52,17 +52,18 @@ router.get('/api/queryAPI', function(req, res){
       console.log(data.weather[0].id)
       var weather = parse(data.weather[0].id)
       console.log("local weather: "+ weather)
-      var playlists;
+      var playlist;
+      // Query Spotify API
       spotifyApi.searchPlaylists(weather)
         .then(function(data) {
           console.log('Found playlists are', data.body);
-          playlists = data.body;
-        }, function(err) {
-          console.log('Something went wrong!', err);
+          playlist = data.body;
+          res.json({ weather : weather, playlist : playlist.playlists.items[0] });
+        }, function(error) {
+          console.log('Something went wrong while finding a playlist! ', error);
         });
 
-      res.json({weather:weather, playlists:playlists});
-    } else{console.log("weather zipcode lookup error: " + error)}
+    } else{console.log("Weather zipcode lookup error! " + error)}
   })
 });
 
