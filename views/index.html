@@ -4,35 +4,12 @@
 <meta charset="utf-8">
 <title>loudCloud</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- styles -->
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/style-single-page.css" rel="stylesheet">
-<link href="font/css/fontello.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 <!-- Add jQuery library -->
 <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 <!-- load angular -->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-<!-- Add fancyBox main JS and CSS files -->
-<script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
-<script>
-            $(document).ready(function() {
-        $(".fancybox-thumb").fancybox({
-            helpers	: {
-                title	: {
-                    type: 'inside'
-                },
-                overlay : {
-                            css : {
-                                'background' : 'rgba(1,1,1,0.65)'
-                            }
-                        }
-            }
-        });
-    });
-        </script>
+
 </head>
 <body ng-controller="index">
 <div class="navbar navbar-fixed-top">
@@ -45,13 +22,11 @@
     </div>
   </div>
 </div>
-<div class="clearfix">
-</div>
-<script src="js/vertical-scroll.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script>
-            $('#myModal').modal('hidden')
-</script>
+
+<p>
+{{weather}}
+</p>
+
 <script type="text/javascript" src="/js/indexController.js"></script>
 
 </body>

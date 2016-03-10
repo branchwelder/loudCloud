@@ -52,6 +52,7 @@ router.get('/api/queryAPI', function(req, res){
       console.log(data.weather[0].id)
       var weather = parse(data.weather[0].id)
       console.log("local weather: "+ weather)
+      res.json(weather);
     } else{console.log("weather zipcode lookup error: " + error)}
   })
 });
