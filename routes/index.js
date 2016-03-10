@@ -5,6 +5,15 @@ var User = require('../models/user');
 var path = require('path');
 var request = require('request');
 var parse = require('../utils/parseWeatherCode.js');
+var config = require('../auth.js');
+var SpotifyWebApi = require('spotify-web-api-node');
+
+
+var spotifyApi = new SpotifyWebApi({
+  clientId : config.spotify.clientID,
+  clientSecret : config.spotify.clientSecret,
+  redirectUri : 'localhost:3000/callback'
+});
 
 /* GET pages. */
 router.get('/', function(req, res, next) {

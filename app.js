@@ -8,40 +8,11 @@ var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var session = require('express-session');
 var passport = require('passport');
-var config = require('./auth.js');
 var swig = require('swig');
-var SpotifyStrategy = require('./passport/index').Strategy;
 var consolidate = require('consolidate');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
-var appKey = config.spotify.clientID; // Your client id
-var appSecret = config.spotify.clientSecret; // Your secret
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
-
-passport.use(new SpotifyStrategy({
-  clientID: appKey,
-  clientSecret: appSecret,
-  callbackURL: 'localhost:3000/callback'
-  },
-  function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-      // To keep the example simple, the user's spotify profile is returned to
-      // represent the logged-in user. In a typical application, you would want
-      // to associate the spotify account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
-  }));
 
 var app = express();
 
