@@ -19,16 +19,12 @@ app.controller('config', function($scope, $http){
 
 	$scope.submit = function() {
 		var zipcode = $("#config").find("[name='zipcode']").val();
-		var preferences = {};
+		var preferences = [];
 
 		$scope.weatherTypes.forEach(function(arrayItem) {
 			var weather = arrayItem.type;
-			$(preferences).extend({
-    		weather:String($('input[name='+weather+']:checked', '#config').val())
-			});
+			preferences.push([weather,String($('input[name='+weather+']:checked', '#config').val())]);
 		});
-
-		console.log("post");
 
 		$http.post("/api/update", {
 			zipcode: zipcode,

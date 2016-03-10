@@ -39,44 +39,42 @@ router.get('/logout', function(req, res){
 
 router.get('/api/getUserData', function(req, res){
   User.find({ _id : req.session.userID }, function(err, user){
-    console.log("HUSJHFSDJHDFSJKHSDFKJH");
-    console.log(user);
-    req.session.pref = user.preferences;
-    console.log(req.session.pref);
     res.json(user)
   });
 });
 
-function findWeather(nameKey, myArray){
-    for (var i=0; i < myArray.length; i++) {
-        if (myArray[i].name === nameKey) {
-            return myArray[i];
-        }
+function findMood(weather, myArray) {
+  for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i][0] == weather) {
+      return myArray[i][1]
     }
+  }
 }
 
 router.get('/api/queryAPI', function(req, res){
   var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + req.session.zipcode + "&APPID=7df611ce3dfb9dd777f9f9816d8810c7";
-  request(url, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var data = JSON.parse(body)
-      console.log(data.weather[0].id)
-      var weather = parse(data.weather[0].id)
-      console.log("local weather: "+ weather)
-      var playlist;
-      // Query Spotify API
-      spotifyApi.searchPlaylists(findWeather(weather, req.session.pref).weather)
-        .then(function(data) {
-          console.log('Found playlists are', data.body);
-          playlist = data.body;
-          // send playlist and weather data
-          res.json({ weather : weather, playlist : playlist.playlists.items[0], playlists : playlist.playlists });
-        }, function(error) {
-          console.log('Something went wrong while finding a playlist! ', error);
-        });
+  User.find({ _id : req.session.userID }, function(err, user){
+    request(url, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var data = JSON.parse(body);
+        console.log(data.weather[0].id);
+        var weather = parse(data.weather[0].id);
+        console.log("local weather: "+ weather);
+        var playlist;
+        // Query Spotify API
+        spotifyApi.searchPlaylists(findMood(weather, user[0].preferences))
+          .then(function(data) {
+            console.log('Found playlists are', data.body);
+            playlist = data.body;
+            // send playlist and weather data
+            res.json({ weather : weather, playlist : playlist.playlists.items[Math.floor(Math.random() * playlist.playlists.items.length)], playlists : playlist.playlists });
+          }, function(error) {
+            console.log('Something went wrong while finding a playlist! ', error);
+          });
 
-    } else{console.log("Weather zipcode lookup error! " + error)}
-  })
+      } else{console.log("Weather zipcode lookup error! " + error)}
+    })
+  });
 });
 
 /* POST pages. */

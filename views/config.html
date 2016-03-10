@@ -13,12 +13,10 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="">
 
-<!-- Javascripting -->
+  <!-- Javascripting -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-  <!-- Add jQuery library -->
-  <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
@@ -39,10 +37,10 @@
     <div class="weatherTypes" ng-repeat="weatherType in weatherTypes">
       <div id = {{weatherType.type}}>
         <h3>{{weatherType.type}}</h3>
-        <input type="radio" value="cheerful" name = {{weatherType.type}}> Cheerful
-        <input type="radio" value="calm" name = {{weatherType.type}}> Calm
-        <input type="radio" value="sad" name = {{weatherType.type}}> Sad
-        <input type="radio" value="grumpy" name = {{weatherType.type}}> Grumpy<br>
+        <input type="radio" value="cheerful" name={{weatherType.type}} checked="checked"> Cheerful
+        <input type="radio" value="calm" name={{weatherType.type}}> Calm
+        <input type="radio" value="sad" name={{weatherType.type}}> Sad
+        <input type="radio" value="grumpy" name={{weatherType.type}}> Grumpy<br>
       </div>
     </div>
     <h1>Where's your weather? </h1>

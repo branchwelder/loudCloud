@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
 var User = mongoose.Schema({
     username: String,
     zipcode: String,
-    preferences: Object
+    preferences: Array
 });
 
 module.exports = mongoose.model("User", User);
