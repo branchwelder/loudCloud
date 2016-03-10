@@ -14,6 +14,7 @@ app.controller('index', function($scope, $http){
 		$scope.zipcode = data.zipcode;
 		$scope.preferences = data.preferences;
 	});
-	console.log($scope.dataa);
-	console.log($scope.username);
+	$http.get('/api/queryAPI').success(function(data){
+		console.log("successful api get")
+	})
 });

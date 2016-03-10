@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
 var path = require('path');
+var request = require('request');
 
 /* GET pages. */
 router.get('/', function(req, res, next) {
@@ -26,11 +27,21 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-router.get('/api/getUserData', function(req,res){
+router.get('/api/getUserData', function(req, res){
   User.find({ _id : req.session.userID }, function(err, user){
     console.log(user);
     res.json(user)
   });
+});
+
+router.get('/api/queryAPI', function(req, res){
+  var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + req.session.zipcode + "&APPID=7df611ce3dfb9dd777f9f9816d8810c7";
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var data = JSON.parse(body)
+      console.log(data.weather[0].description)
+    } else{console.log("weather zipcode lookup error: " + error)}
+  })
 });
 
 /* POST pages. */
@@ -41,6 +52,7 @@ router.post('/api/login', function(req, res, next){
     } else{
       if(user.length > 0){
         req.session.userID = user[0]._id;
+        req.session.zipcode = user[0].zipcode;
         res.send("done")
       } else{
         var newUser = new User({
