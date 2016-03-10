@@ -41,7 +41,8 @@ router.get('/api/getUserData', function(req, res){
   User.find({ _id : req.session.userID }, function(err, user){
     console.log("HUSJHFSDJHDFSJKHSDFKJH");
     console.log(user);
-    req.session.pref = user[0].preferences;
+    req.session.pref = user.preferences;
+    console.log(req.session.pref);
     res.json(user)
   });
 });
