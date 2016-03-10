@@ -72,9 +72,10 @@ router.post('/api/login', function(req, res, next){
     if (error){
       console.log(error);
     } else{
-      if(user.length > 0){
-        req.session.userID = user[0]._id;
-        req.session.zipcode = user[0].zipcode;
+      if(user != undefined){
+        console.log(user)
+        req.session.userID = user._id;
+        req.session.zipcode = user.zipcode;
         res.send("done")
       } else{
         var newUser = new User({
