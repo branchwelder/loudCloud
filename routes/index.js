@@ -4,6 +4,7 @@ var passport = require('passport');
 var User = require('../models/user');
 var path = require('path');
 var request = require('request');
+var parse = require('../utils/parseWeatherCode.js');
 
 /* GET pages. */
 router.get('/', function(req, res, next) {
@@ -39,7 +40,9 @@ router.get('/api/queryAPI', function(req, res){
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body)
-      console.log(data.weather[0].description)
+      console.log(data.weather[0].id)
+      var weather = parse(data.weather[0].id)
+      console.log("local weather: "+ weather)
     } else{console.log("weather zipcode lookup error: " + error)}
   })
 });

@@ -9,7 +9,7 @@ app.controller('config', function($scope, $http){
 	{type: "Snow"},
 	{type: "Fog"},
 	{type: "Clear"},
-	{type: "Overcast"},
+	{type: "Cloudy"},
 	{type: "Windy"},
 	{type: "Sunny"}];
 
