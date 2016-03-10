@@ -39,10 +39,20 @@ router.get('/logout', function(req, res){
 
 router.get('/api/getUserData', function(req, res){
   User.find({ _id : req.session.userID }, function(err, user){
+    console.log("HUSJHFSDJHDFSJKHSDFKJH");
     console.log(user);
+    req.session.pref = user[0].preferences;
     res.json(user)
   });
 });
+
+function findWeather(nameKey, myArray){
+    for (var i=0; i < myArray.length; i++) {
+        if (myArray[i].name === nameKey) {
+            return myArray[i];
+        }
+    }
+}
 
 router.get('/api/queryAPI', function(req, res){
   var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + req.session.zipcode + "&APPID=7df611ce3dfb9dd777f9f9816d8810c7";
@@ -54,7 +64,7 @@ router.get('/api/queryAPI', function(req, res){
       console.log("local weather: "+ weather)
       var playlist;
       // Query Spotify API
-      spotifyApi.searchPlaylists(weather)
+      spotifyApi.searchPlaylists(findWeather(weather, req.session.pref).weather)
         .then(function(data) {
           console.log('Found playlists are', data.body);
           playlist = data.body;
