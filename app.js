@@ -12,7 +12,6 @@ var swig = require('swig');
 var consolidate = require('consolidate');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -37,7 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('html', consolidate.swig);
 
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

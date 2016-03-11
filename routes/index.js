@@ -37,12 +37,6 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-router.get('/api/getUserData', function(req, res){
-  User.find({ _id : req.session.userID }, function(err, user){
-    res.json(user)
-  });
-});
-
 function findMood(weather, myArray) {
   for (var i = 0; i < myArray.length; i++) {
     if (myArray[i][0] == weather) {
