@@ -18,23 +18,33 @@
 
 </head>
 <body ng-controller="index">
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#profile"></a>
-      <ul class="nav nav-collapse pull-right">
-        <li><a href="/config"><i class="icon-user"></i> Settings</a></li>
-        <li><a href="/logout"><i class="icon-off"></i> Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
 
-<div>
-  <h1>{{playlist.name}}</h1>
-<iframe src="https://embed.spotify.com/?uri={{playlist.uri}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-</div>
+	<nav class="navbar navbar-custom">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navstyle navbar-brand" href="#">loudCloud</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a class="navhover navstyle" href="/config">Settings</a></li>
+				<li><a class="navhover navstyle" href="/logout">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
 
-<script type="text/javascript" src="/js/indexController.js"></script>
+	<div class="container-fluid">
+		<div class="row">
+			<div>
+				<div class="col-md-4">
+					<img src="/images/loudCloudLogo.png">
+					<h2>It's {{weather}} outside!</h2>
+		  		<h3>You're listening to {{playlist.name}} by {{playlist.owner.id}}</h3><br>
+					<iframe src="https://embed.spotify.com/?uri={{playlist.uri}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/js/indexController.js"></script>
 
 </body>
 </html>

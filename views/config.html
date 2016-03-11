@@ -37,15 +37,15 @@
     <div class="weatherTypes" ng-repeat="weatherType in weatherTypes">
       <div id = {{weatherType.type}}>
         <h3>{{weatherType.type}}</h3>
-        <input type="radio" value="cheerful" name={{weatherType.type}}> Cheerful
-        <input type="radio" value="calm" name={{weatherType.type}}> Calm
-        <input type="radio" value="sad" name={{weatherType.type}}> Sad
-        <input type="radio" value="grumpy" name={{weatherType.type}}> Grumpy<br>
+        <input type="radio" value="cheerful" name={{weatherType.type}} id="a">   Cheerful
+        <input type="radio" value="calm" name={{weatherType.type}} id="b">   Calm
+        <input type="radio" value="sad" name={{weatherType.type}} id="c">   Sad
+        <input type="radio" value="grumpy" name={{weatherType.type}} id="d">   Grumpy   <br>
       </div>
     </div>
     <h1>Where's your weather? </h1>
-    <input class = "zipcode" type="text" name="zipcode" placeholder="zipcode, please"><br>
-    <input class = "btn-submit" type = "submit" value = "submit">
+    <input class="zipcode" type="text" name="zipcode" placeholder="zipcode, please"><br>
+    <input class="btn-submit" type="submit" value="submit">
   </form>
 </div>
 <script type="text/javascript" src="/js/configController.js"></script>

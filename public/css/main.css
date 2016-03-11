@@ -99,7 +99,7 @@
   }
 
 
-  .btn-common:hover, 
+  .btn-common:hover,
   .btn-common:focus{
     outline: none;
     background: none;
@@ -212,7 +212,7 @@
 }
 
 .social-icons ul li a:hover,
-.social-icons ul li a:focus{  
+.social-icons ul li a:focus{
   background: none;
 }
 
@@ -249,8 +249,8 @@
 }
 
 
-#header .navbar-inverse .navbar-nav  li.active > a,  
-#header .navbar-inverse .navbar-nav  li.active > a:focus, 
+#header .navbar-inverse .navbar-nav  li.active > a,
+#header .navbar-inverse .navbar-nav  li.active > a:focus,
 #header .navbar-nav.navbar-right li > a:hover,
 .navbar-inverse .navbar-nav > .open > a {
   background-color: inherit;
@@ -308,7 +308,7 @@ ul.sub-menu {
 }
 
 .fa-angle-down{
-  padding-left: 5px; 
+  padding-left: 5px;
 }
 
 .scaleIn {
@@ -450,7 +450,7 @@ ul.sub-menu {
   height: 40px;
 }
 
-.form-control:hover, 
+.form-control:hover,
 .form-control:focus{
   border-color: #4fcccd;
   outline: none;
@@ -473,7 +473,7 @@ ul.sub-menu {
   min-width: 130px;
 }
 
-.btn-submit:hover, 
+.btn-submit:hover,
 .btn-submit:focus{
   color: #fff;
   outline: none;
@@ -484,7 +484,7 @@ ul.sub-menu {
 .copyright-text{
   margin-top: 70px;
   color: #fff;
-  font-size: 16px;  
+  font-size: 16px;
   padding-bottom: 15px;
 }
 
@@ -703,4 +703,10 @@ ul.sub-menu {
 .clients-logo {
   overflow: hidden;
   margin-bottom: 10px;
+}
+
+img {
+    max-width: 70%;
+    height: auto;
+    width: auto\9; /* ie8 */
 }

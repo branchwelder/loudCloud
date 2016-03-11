@@ -13,5 +13,6 @@ app.controller('index', function($scope, $http){
 		console.log("successful api get");
 		$scope.weather = data.weather;
 		$scope.playlist = data.playlist;
+		console.log($scope.playlist)
 	})
 });
