@@ -8,7 +8,6 @@ var parse = require('../utils/parseWeatherCode.js');
 var config = require('../auth.js');
 var SpotifyWebApi = require('spotify-web-api-node');
 
-
 var spotifyApi = new SpotifyWebApi({
   clientId : config.spotify.clientID,
   clientSecret : config.spotify.clientSecret,
@@ -37,7 +36,9 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
+// you could probably come up with a more descriptive variable name than myArray
 function findMood(weather, myArray) {
+  // a more convient structure for user preferences might have been {weather: user}
   for (var i = 0; i < myArray.length; i++) {
     if (myArray[i][0] == weather) {
       return myArray[i][1]
@@ -47,6 +48,7 @@ function findMood(weather, myArray) {
 
 router.get('/api/queryAPI', function(req, res){
   var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + req.session.zipcode + "&APPID=7df611ce3dfb9dd777f9f9816d8810c7";
+  //might want to use findById so that, its more concise, faster, and you don't have to use user[0] later on
   User.find({ _id : req.session.userID }, function(err, user){
     request(url, function (error, response, body) {
       if (!error && response.statusCode == 200) {
@@ -97,10 +99,12 @@ router.post('/api/login', function(req, res, next){
 })
 
 router.post('/api/update', function(req, res, next) {
+  // prolly wanna get rid of these log statements
   console.log("halllooo");
   var zipcode = req.body.zipcode;
   var preferences = req.body.preferences;
   var id = req.session.userID;
+  //isn't this already in rea.user.zipcode?
   req.session.zipcode = req.body.zipcode;
 
   User.findByIdAndUpdate(id, {$set: {zipcode: zipcode, preferences: preferences }}, {upsert:false},function (err, user) {
