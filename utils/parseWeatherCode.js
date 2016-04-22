@@ -1,6 +1,6 @@
 var code;
 var weatherType;
-//weather data has more options than users care to 
+//weather data has more options than users care to
 //think about, so some have been grouped.
 module.exports = function(number){
 	code = number.toString();
@@ -35,6 +35,6 @@ module.exports = function(number){
 	    	}else {weatherType = "Thunderstorm"} //actually, this is various winds or hurricanes
 	        break;
 	    default: weatherType = "Thunderstorm" //who knows what this weather is?!
-	} 
+	}
 	return weatherType
 }

@@ -22,6 +22,7 @@ app.controller('config', function($scope, $http){
 
 		$scope.weatherTypes.forEach(function(arrayItem) {
 			var weather = arrayItem.type;
+            //a prehaps easier way to store this data: preferences[weather] = String($('input[name='+weather+']:checked', '#config').val())
 			preferences.push([weather,String($('input[name='+weather+']:checked', '#config').val())]);
 		});
 

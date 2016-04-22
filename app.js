@@ -17,6 +17,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, './views'));
+//why did you guys with swig and ejs over handlebars
 app.set('view engine', 'ejs');
 
 var mongoURI = 'mongodb://hannah:doggy@ds023398.mlab.com:23398/loudcloud';
@@ -27,7 +28,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'my_precious',
+                resave: true,
+                saveUninitialized: true,
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
