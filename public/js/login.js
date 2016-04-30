@@ -17,3 +17,6 @@ $("#loginForm").submit(function(event){
 	.done(onSuccessLogin)
 	.done(onErrorLogin);
 });
+
+// Is there a way to take advantage of angular to do this?
+// A little weird to be mixing jquery and angular

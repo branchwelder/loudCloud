@@ -10,6 +10,7 @@ var SpotifyWebApi = require('spotify-web-api-node');
 
 
 var spotifyApi = new SpotifyWebApi({
+  // would have to change this to deploy
   clientId : config.spotify.clientID,
   clientSecret : config.spotify.clientSecret,
   redirectUri : 'localhost:3000/callback'
@@ -43,23 +44,35 @@ function findMood(weather, myArray) {
       return myArray[i][1]
     }
   }
+  /*
+  You could use a functional tool (find) to do the same thing!
+  Like so:
+
+  var currentMood = myArray.find(function(aMood) {
+    return aMood[0] == weather
+  });
+  return currentMood[1];
+
+  Also, could myArray have a better name? is it an array of moods?
+  */
 }
 
 router.get('/api/queryAPI', function(req, res){
-  var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + req.session.zipcode + "&APPID=7df611ce3dfb9dd777f9f9816d8810c7";
+  // I don't think you need url in this outer scope -- can declare it inside the user.find
   User.find({ _id : req.session.userID }, function(err, user){
+    var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + req.session.zipcode + "&APPID=7df611ce3dfb9dd777f9f9816d8810c7";
     request(url, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var data = JSON.parse(body);
         console.log(data.weather[0].id);
         var weather = parse(data.weather[0].id);
-        console.log("local weather: "+ weather);
-        var playlist;
+        // clean up your debugging mechanisms!
+        // I don't think you need playlist in this outer scope -- can just define it in the function
         // Query Spotify API
         spotifyApi.searchPlaylists(findMood(weather, user[0].preferences))
           .then(function(data) {
             console.log('Found playlists are', data.body);
-            playlist = data.body;
+            var playlist = data.body;
             // send playlist and weather data
             res.json({ weather : weather, playlist : playlist.playlists.items[Math.floor(Math.random() * playlist.playlists.items.length)], playlists : playlist.playlists });
           }, function(error) {

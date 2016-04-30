@@ -1,9 +1,11 @@
-var code;
-var weatherType;
-//weather data has more options than users care to 
+// I like that this is modularized!
+//weather data has more options than users care to
 //think about, so some have been grouped.
 module.exports = function(number){
-	code = number.toString();
+	// I wouldn't make weatherType and code global to the file unless they
+	// need to be global to the file... and it doesn't seem to me like they do
+	var weatherType;
+	var code = number.toString();
 	switch(code.charAt(0)) {
 	    case '2':
 	        weatherType = "Thunderstorm"
@@ -18,6 +20,7 @@ module.exports = function(number){
 	        weatherType = "Snow"
 	        break;
 	    case '7':
+	    	// This if/else seems useless -- sets the same weatherType in each case
 	    	if(code.charAt(1) == 4){
 	    		weatherType = "Fog"
 	    	}else{weatherType = "Fog"} //actually, this is particulates in general
@@ -35,6 +38,6 @@ module.exports = function(number){
 	    	}else {weatherType = "Thunderstorm"} //actually, this is various winds or hurricanes
 	        break;
 	    default: weatherType = "Thunderstorm" //who knows what this weather is?!
-	} 
+	}
 	return weatherType
 }
