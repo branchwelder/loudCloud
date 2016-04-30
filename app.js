@@ -17,8 +17,10 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, './views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); // a little weird to be mixing ejs with angular...
 
+// Not good practice to store mongolab username/password in plaintext in your
+// github repo! Please put these into your auth file/environment variables :)
 var mongoURI = 'mongodb://hannah:doggy@ds023398.mlab.com:23398/loudcloud';
 mongoose.connect(mongoURI);
 
@@ -35,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.engine('html', consolidate.swig);
 
-app.use('/', routes);
+app.use('/', routes); // nice use of the express router
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

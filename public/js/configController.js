@@ -22,7 +22,7 @@ app.controller('config', function($scope, $http){
 
 		$scope.weatherTypes.forEach(function(arrayItem) {
 			var weather = arrayItem.type;
-			preferences.push([weather,String($('input[name='+weather+']:checked', '#config').val())]);
+			preferences.push([weather,String($('input[name='+weather+']:checked', '#config').val())]); // this line is a little dense -- could you split apart for readability, maybe?
 		});
 
 		$http.post("/api/update", {
